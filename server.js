@@ -3,12 +3,23 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
+// ✅ Configure CORS policy
+const corsOptions = {
+  origin: "https://my-app-sepia-iota.vercel.app", // ✅ Allow frontend
+  methods: "GET, POST", // ✅ Allowed request methods
+  allowedHeaders: "Content-Type", // ✅ Allowed headers
+  credentials: true, // ✅ Allow cookies if needed
+};
+
+app.use(cors(corsOptions)); // ✅ Use CORS with specific options
+
 const app = express();
 const PORT = 5001;
 
 // Middleware
 app.use(bodyParser.json());
-app.use(cors());
+
+
 
 // Connect to MongoDB
 mongoose
